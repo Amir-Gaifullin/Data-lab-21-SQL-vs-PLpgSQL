@@ -2,8 +2,8 @@
 
 ## Create 2 funcs SQL and PLpgSQL
 
-* V1__Create_function_get_single_value_from_sql_table.sql
-This function takes an input parameter as a table name and retrieves the first value found in that table using a regular SQL query. The function then returns the table value.
+### V1__Create_function_get_single_value_from_sql_table.sql
+* This function takes an input parameter as a table name and retrieves the first value found in that table using a regular SQL query. The function then returns the table value.
 
 ```
 CREATE FUNCTION get_single_value_from_table_sql(table_name TEXT)
@@ -18,8 +18,8 @@ $$ LANGUAGE SQL;
 
 
 ```
-* V2__Create_function_get_single_value_from_plpgsql_table.sql
-This function takes an input parameter as a table name and retrieves the first value found in that table using a dynamic SQL query built by concatenating the table name with the query string using `quote_ident` to ensure safe identifier usage. The function then returns the table value.
+### V2__Create_function_get_single_value_from_plpgsql_table.sql
+* This function takes an input parameter as a table name and retrieves the first value found in that table using a dynamic SQL query built by concatenating the table name with the query string using `quote_ident` to ensure safe identifier usage. The function then returns the table value.
 
 ```
 CREATE FUNCTION get_single_value_from_table_plpgsql(table_name TEXT)
