@@ -61,8 +61,7 @@ latency average = 8.389 ms
 initial connection time = 314.714 ms
 tps = 1192.063806 (without initial connection time)
 ```
-<img width="904" alt="Снимок экрана 2023-05-24 в 20 02 03" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/d6dc1490-ef2b-47a8-a9a6-99470bfc25c9">
-
+<img width="759" alt="Снимок экрана 2023-05-24 в 20 22 51" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/4d795d2f-5f93-41f8-a890-a8414ddbcd3d">
 
 ### For PLpgSQL func
 
@@ -89,5 +88,5 @@ latency average = 9.984 ms
 initial connection time = 178.966 ms
 tps = 1001.558423 (without initial connection time)
 ```
-<img width="759" alt="Снимок экрана 2023-05-24 в 20 22 51" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/4d795d2f-5f93-41f8-a890-a8414ddbcd3d">
+<img width="762" alt="Снимок экрана 2023-05-24 в 20 39 06" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/f9b3932f-11fb-47f7-9533-8e51cae1f641">
 
