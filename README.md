@@ -89,4 +89,5 @@ latency average = 9.984 ms
 initial connection time = 178.966 ms
 tps = 1001.558423 (without initial connection time)
 ```
-![Uploading Снимок экрана 2023-05-24 в 20.22.51.png…]()
+<img width="759" alt="Снимок экрана 2023-05-24 в 20 22 51" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/4d795d2f-5f93-41f8-a890-a8414ddbcd3d">
+
