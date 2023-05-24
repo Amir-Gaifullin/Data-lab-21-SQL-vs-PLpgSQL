@@ -39,6 +39,8 @@ $$;
 ```
 
 * flyway migrate:
+<img width="716" alt="Снимок экрана 2023-05-25 в 00 05 39" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/270b45af-e9ab-489e-9ddb-809fc11e56db">
+<img width="817" alt="Снимок экрана 2023-05-25 в 00 07 12" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/2c49cb85-ed81-4008-a612-29aed374fee8">
 
 
 ## Benchmark Commands
@@ -60,6 +62,8 @@ pgbench -c 10 -T 300 flyway_test -f my_benchmark_sql.sql
 
 Result:
 
+<img width="502" alt="Снимок экрана 2023-05-25 в 00 24 22" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/c2e7fceb-070b-4778-97ec-2e0ea2503eda">
+
 
 ### For PLpgSQL func
 
@@ -73,9 +77,10 @@ END;
 ```
 
 ```
-pgbench -c 10 -T 300 flyway_test -f my_benchmark_plpgsql.sql
+pgbench -c 10 -T 300 flyway_test -f my_benchmark_pplgsql.sql
 ```
 
 Result:
 
+<img width="529" alt="Снимок экрана 2023-05-25 в 00 39 31" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/ea00df56-3f2b-4a43-8456-dfdbf1871a5c">
 
