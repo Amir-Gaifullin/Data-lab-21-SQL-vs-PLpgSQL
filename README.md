@@ -30,7 +30,8 @@ SELECT name FROM product1 LIMIT 1;
 ```
 
 * flyway migrate:
-<img width="904" alt="Снимок экрана 2023-05-24 в 20 02 03" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/538110b8-b4fb-4db5-84cd-fc7108f206b2">
+
+<img width="912" alt="Снимок экрана 2023-05-24 в 20 35 41" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/9b296ef0-0c86-4140-96eb-a53261a35ce3">
 
 
 ## Benchmark Commands
@@ -43,7 +44,23 @@ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT name FROM product1 LIMIT 1;")
 
 Result:
 
-<img width="759" alt="Снимок экрана 2023-05-24 в 20 22 51" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/689df966-20bc-4409-8cc7-7b7d3c401b1c">
+```
+amir@amir1:~/flyway-9.8.1$ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT name FROM product1 LIMIT 1;")
+pgbench (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
+starting vacuum...end.
+transaction type: /dev/fd/63
+scaling factor: 1
+query mode: simple
+number of clients: 10
+number of threads: 1
+maximum number of tries: 1
+duration: 300 s
+number of transactions actually processed: 357316
+number of failed transactions: 0 (0.000%)
+latency average = 8.389 ms
+initial connection time = 314.714 ms
+tps = 1192.063806 (without initial connection time)
+```
 
 
 ### For PLpgSQL func
@@ -54,5 +71,20 @@ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT get_table_value_limit(1);")
 
 Result:
 
-<img width="759" alt="Снимок экрана 2023-05-24 в 20 28 59" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/e4f2c5e0-db23-4581-85a2-8d9dd8b18d88">
-
+```
+amir@amir1:~/flyway-9.8.1$ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT get_table_value_limit(1);")
+pgbench (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
+starting vacuum...end.
+transaction type: /dev/fd/63
+scaling factor: 1
+query mode: simple
+number of clients: 10
+number of threads: 1
+maximum number of tries: 1
+duration: 300 s
+number of transactions actually processed: 300350
+number of failed transactions: 0 (0.000%)
+latency average = 9.984 ms
+initial connection time = 178.966 ms
+tps = 1001.558423 (without initial connection time)
+```
