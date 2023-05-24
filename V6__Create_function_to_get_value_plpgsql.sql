@@ -1,4 +1,4 @@
-create function get_table_value_limit(value_limit int)
+create function get_table_value_plpgsql(id int)
 returns varchar
 language plpgsql
 as
@@ -8,7 +8,7 @@ declare
 begin
    select name
    from product1
-   LIMIT value_limit
+   where product1.id = get_table_value_plpgsql.id
    into table_value;
 
    return table_value;

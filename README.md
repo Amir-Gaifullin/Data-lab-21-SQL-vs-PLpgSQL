@@ -2,10 +2,10 @@
 
 ## Create 2 funcs SQL and PLpgSQL
 
-### V8__Create_get_table_value_limit_plpgsql.sql
+### V6__Create_function_to_get_value_plpgsql.sql
 
 ```
-create function get_table_value_limit(value_limit int)
+create function get_table_value_plpgsql(id int)
 returns varchar
 language plpgsql
 as
@@ -15,7 +15,7 @@ declare
 begin
    select name
    from product1
-   LIMIT value_limit
+   where product1.id = get_table_value_plpgsql.id
    into table_value;
 
    return table_value;
@@ -23,15 +23,22 @@ end;
 $$;
 ```
 
-### SQL func
+### V7__Create_function_to_get_value_sql.sql
 
 ```
-SELECT name FROM product1 LIMIT 1;
+create function get_table_value_sql1(id int)
+returns varchar
+language sql
+as
+$$
+  SELECT name
+  FROM product1
+  WHERE id=id;
+$$;
+
 ```
 
 * flyway migrate:
-
-<img width="912" alt="Снимок экрана 2023-05-24 в 20 35 41" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/9b296ef0-0c86-4140-96eb-a53261a35ce3">
 
 
 ## Benchmark Commands
@@ -39,54 +46,36 @@ SELECT name FROM product1 LIMIT 1;
 ### For SQL func
 
 ```
-pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT name FROM product1 LIMIT 1;")
+-- my_benchmark_sql.sql
+
+\set id random(1, 100000)
+BEGIN;
+SELECT get_table_value_sql(:id);
+END;
+```
+
+```
+pgbench -c 10 -T 300 flyway_test -f my_benchmark_sql.sql
 ```
 
 Result:
 
-```
-amir@amir1:~/flyway-9.8.1$ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT name FROM product1 LIMIT 1;")
-pgbench (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
-starting vacuum...end.
-transaction type: /dev/fd/63
-scaling factor: 1
-query mode: simple
-number of clients: 10
-number of threads: 1
-maximum number of tries: 1
-duration: 300 s
-number of transactions actually processed: 357316
-number of failed transactions: 0 (0.000%)
-latency average = 8.389 ms
-initial connection time = 314.714 ms
-tps = 1192.063806 (without initial connection time)
-```
-<img width="759" alt="Снимок экрана 2023-05-24 в 20 22 51" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/4d795d2f-5f93-41f8-a890-a8414ddbcd3d">
 
 ### For PLpgSQL func
 
 ```
-pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT get_table_value_limit(1);")
+-- my_benchmark_plpgsql.sql
+
+\set id random(1, 100000)
+BEGIN;
+SELECT get_table_value_plpgsql(:id);
+END;
+```
+
+```
+pgbench -c 10 -T 300 flyway_test -f my_benchmark_plpgsql.sql
 ```
 
 Result:
 
-```
-amir@amir1:~/flyway-9.8.1$ pgbench -c 10 -T 300 flyway_test -f <(echo "SELECT get_table_value_limit(1);")
-pgbench (15.2 (Ubuntu 15.2-1.pgdg22.04+1))
-starting vacuum...end.
-transaction type: /dev/fd/63
-scaling factor: 1
-query mode: simple
-number of clients: 10
-number of threads: 1
-maximum number of tries: 1
-duration: 300 s
-number of transactions actually processed: 300350
-number of failed transactions: 0 (0.000%)
-latency average = 9.984 ms
-initial connection time = 178.966 ms
-tps = 1001.558423 (without initial connection time)
-```
-<img width="762" alt="Снимок экрана 2023-05-24 в 20 39 06" src="https://github.com/Amir-Gaifullin/Data-lab-21-SQL-vs-PLpgSQL/assets/47780452/f9b3932f-11fb-47f7-9533-8e51cae1f641">
 
